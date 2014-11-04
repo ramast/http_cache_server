@@ -11,9 +11,8 @@ future requests to the same page will be returned from the offline cache.
 Use cases for this script
 -------------------------
 
-- conserve bandwidth when frequently accessing a site with a static or semi-static content (ex: documentations of certain version of a software).
-- access the previously visited pages of a selected domained offline.
-- if you are web developer who want to develop sites offline but unable to because your site require files hosted for example on ajax.googleapis.com
+- Conserve bandwidth when frequently accessing a site with a static or semi-static content (ex: documentations of certain version of a software).
+- If you are a web developer and want to develop sites offline but unable to because your site(s) require files hosted elsewhere (for example jquery hosted on ajax.googleapis.com)
 
 How to use?
 --------------------------
@@ -28,9 +27,8 @@ How to use?
 8. Visit it again but use __https__ instead of __http__, naturally you will get certeficate error. say you trust this certeficate.
 9. Done! Now you can access this url offline.
 
-__Note__: Some webbrowsers don't bother making http requests when it detect you have no internet connection.
+__For adding more domains__:
 
-__For adding more domains___:
 1. Add the following to your /etc/hosts : `127.0.0.2   <domain name>`
 2. If you want to support https you must visit any url in this domain and tell the browser to trust the certifcate we generated earlier. 
 3. Done
@@ -46,5 +44,6 @@ You can do
 
 Known limitations
 ---------------------------
-* The script has to run on port 80, if you already use this port for apache make sure it only listen to 127.0.0.1:80 and not *:80
+* The script has to run on port 80 and 443, if you already use this port for apache make sure apache only listen to 127.0.0.1:80 not *:80 same for port 443
 * The script support https requests but your webbrowser will complain about invalid certeficate, this is normal because the script is acting as a man in the middle between you and the site you are visiting. in firefox you can say I understand the risks and add an exception
+* Some webbrowsers don't bother making http requests when it detect you have no internet connection. To over come this limitation maybe try a different webbrowser or fake internet connection `ifconfig eth0 10.10.0.1 up`
